@@ -9,12 +9,15 @@ def readingimg(img_path):
     img=cv2.resize(img,dim)
 
     _,img = cv2.threshold(img,127,255,cv2.THRESH_BINARY)
-    data=bytearray(img)
-
-    for i in range(len(data)):
-        if data[i]>0:
-            data[i]=1
+    data = []
+    for row in img:
+        for cell in row:
+            if cell==0:
+                data.append(0)
+            else :
+                data.append(1)
     return data
+
 
 def write_to_file(data):
     with open("imgcode.txt","w")  as file:
@@ -27,7 +30,7 @@ def write_to_file(data):
                     bt+=str(0)
             st = "B{0}, ".format(bt)
             file.write(st)
-            if i>0 and i%16==0:
+            if i%14==0:
                 file.write("\n")
     
 
