@@ -1,0 +1,1 @@
+A basic python script for generating C arrays from png/jpg images and write the array to a text for using with SSD1306 OLED and arduino 
