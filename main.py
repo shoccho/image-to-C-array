@@ -20,7 +20,7 @@ def readingimg(img_path):
 
 
 def write_to_file(data):
-    with open("imgcode.txt","w")  as file:
+    with open("imgcode.txt","a")  as file:
         for i in range(0,len(data),8):
             bt = ""
             for j in range(0,8):
@@ -38,10 +38,12 @@ def main():
     if(len(sys.argv)==1):
         print("No imge was supplied :/ exiting")
         sys.exit()
-
+        with open("imgcode.txt","w")  as file:
+            # clearing the file 
     for arg in sys.argv[1:]:
-        binary_data = readingimg(arg)
-        write_to_file(binary_data)
+        if arg.endswith("jpg") or arg.endswith("png"):
+            binary_data = readingimg(arg)
+            write_to_file(binary_data)
     print("Done ")
 if __name__ == "__main__":
     main()
